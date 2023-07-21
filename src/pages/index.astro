@@ -1,0 +1,20 @@
+---
+import "@/styles/globals.css";
+
+import Layout from "../layouts/Layout.astro";
+import { Avatar } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <div class="grid p-4">
+      <Card>
+        <CardContent>
+          <Avatar />
+          <h2 class="text-lg">A portfolio brimming with innovation.</h2>
+        </CardContent>
+      </Card>
+    </div>
+  </main>
+</Layout>
