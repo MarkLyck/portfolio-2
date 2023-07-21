@@ -1,0 +1,69 @@
+---
+import { Github, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+---
+
+<div class="flex flex-col @[60rem]:flex-row gap-4">
+  <Card className="flex-1 flex flex-col justify-between">
+    <CardHeader className="pb-4">
+      <img
+        src="https://github.com/shadcn.png"
+        alt="@marklyck"
+        class="h-16 w-16 rounded-full"
+      />
+    </CardHeader>
+    <CardContent>
+      <h2 class="text-[40px]">A portfolio brimming with innovation</h2>
+      <span class="text-secondary-foreground"
+        >Mark Lyck • Full-stack Web developer</span
+      >
+    </CardContent>
+  </Card>
+  <div class="flex flex-1 gap-4 flex-col">
+    <Card className="">
+      <CardHeader className="pb-0">
+        <span class="text-[28px] text-secondary-foreground">Title</span>
+      </CardHeader>
+      <CardContent>
+        <h3 class="text-[28px]">Lead Web Developer</h3>
+      </CardContent>
+    </Card>
+    <ul class="flex gap-4 w-full">
+      <li class="flex-1">
+        <a
+          href="https://github.com/marklyck"
+          target="_blank"
+          class="flex items-center justify-center rounded border-border border w-full py-4 text-xl bg-card hover:bg-white text-white hover:text-black"
+        >
+          <Github className="mr-2" />
+          Github
+        </a>
+      </li>
+      <li class="flex-1">
+        <a
+          href="https://www.linkedin.com/in/mlyck/"
+          target="_blank"
+          class="flex items-center justify-center rounded border-border border w-full py-4 text-xl bg-card hover:bg-white text-white hover:text-black"
+        >
+          <Linkedin className="mr-2" />
+          LinkedIn
+        </a>
+      </li>
+    </ul>
+    <Card className="">
+      <CardHeader className="pb-0">
+        <span class="text-[28px] text-secondary-foreground">Based In</span>
+      </CardHeader>
+      <CardContent>
+        <h3 class="text-[28px]">Maryland, USA</h3>
+      </CardContent>
+    </Card>
+  </div>
+  <Card className="flex-1 flex items-center justify-center flex-col p-8">
+    <h3 class="text-[28px] mb-4">Let's work together!</h3>
+    <Button className="text-lg px-12 py-8 rounded-full">
+      hello@marklyck.com
+    </Button>
+  </Card>
+</div>
