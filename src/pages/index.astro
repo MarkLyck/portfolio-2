@@ -2,17 +2,71 @@
 import "@/styles/globals.css";
 
 import Layout from "../layouts/Layout.astro";
-import { Avatar } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Mark Lyck's Portfolio">
   <main>
-    <div class="grid p-4">
+    <div class="grid p-12 gap-4">
       <Card>
+        <CardHeader className="pb-4">
+          <img
+            src="https://github.com/shadcn.png"
+            alt="@marklyck"
+            class="h-12 w-12 rounded-full"
+          />
+        </CardHeader>
         <CardContent>
-          <Avatar />
-          <h2 class="text-lg">A portfolio brimming with innovation.</h2>
+          <h2 class="text-[40px]">Available for hire</h2>
+          <span class="text-secondary-foreground"
+            >Mark Lyck • Full-stack Web developer</span
+          >
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader className="pb-0">
+          <span class="text-[28px] text-secondary-foreground">Title</span>
+        </CardHeader>
+        <CardContent>
+          <h3 class="text-[28px]">Lead Web Developer</h3>
+        </CardContent>
+      </Card>
+      <ul class="flex gap-2 w-full">
+        <li class="flex-1">
+          <Button
+            className="py-8 text-xl w-full bg-card text-white hover:text-black"
+          >
+            Github
+          </Button>
+        </li>
+        <li class="flex-1">
+          <Button
+            className="py-8 text-xl w-full bg-card text-white hover:text-black"
+          >
+            LinkedIn
+          </Button>
+        </li>
+      </ul>
+      <Card>
+        <CardHeader className="pb-0">
+          <span class="text-[28px] text-secondary-foreground">Based In</span>
+        </CardHeader>
+        <CardContent>
+          <h3 class="text-[28px]">Maryland, USA</h3>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader className="flex items-center justify-center pb-0">
+          <span class="text-[28px] text-secondary-foreground">Icon</span>
+        </CardHeader>
+        <CardContent
+          className="flex flex-col items-center justify-center pb-12"
+        >
+          <h3 class="text-[28px] mb-4">Let's work together!</h3>
+          <Button className="text-lg px-12 py-8 rounded-full">
+            hello@marklyck.com
+          </Button>
         </CardContent>
       </Card>
     </div>
