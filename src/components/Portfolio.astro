@@ -1,0 +1,38 @@
+---
+import { Gem } from "lucide-react";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PortfolioItem from "@/components/PortfolioItem.astro";
+---
+
+<Section>
+  <SectionHeader title="Portfolio" subtitle="Projects I've worked on">
+    <Gem className="text-secondary-foreground" />
+  </SectionHeader>
+  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8 max-w-[60rem]">
+    <PortfolioItem
+      title="Nebula"
+      description="Creator video platform"
+      url="https://nebula.tv"
+      imgSrc="https://framerusercontent.com/images/0CV1M2BaTvPt3edQ4GIsih1Eiv8.webp"
+    />
+    <PortfolioItem
+      title="Formula Stocks"
+      description="Value/Growth investment research platform"
+      url="https://formulastocks.com"
+      imgSrc="https://framerusercontent.com/images/1A6mx91M0O264eytCa7YNZR8CuM.webp"
+    />
+    <PortfolioItem
+      title="Colony Networks"
+      description="Telenet analytics & monitoring platform"
+      url="https://colonynetworks.com"
+      imgSrc="https://framerusercontent.com/images/rIvd1X0RGMcYKVhJ4zv58VbNrfk.webp"
+    />
+    <PortfolioItem
+      title="Weekly Stocktip"
+      description="AI Stockpick system"
+      url="https://weeklystocktip.com"
+      imgSrc="https://framerusercontent.com/images/rLmFsNJzLL1tv6Qp7ylQdHZpfkg.webp"
+    />
+  </div>
+</Section>

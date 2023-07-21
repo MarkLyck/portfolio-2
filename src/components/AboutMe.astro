@@ -6,10 +6,10 @@ import SectionHeader from "@/components/SectionHeader.astro";
 ---
 
 <Section>
-  <SectionHeader title="About me section" subtitle="Who is this guy?">
+  <SectionHeader title="About me" subtitle="Who is this guy?">
     <Gem className="text-secondary-foreground" />
   </SectionHeader>
-  <div class="flex flex-col @[60rem]:flex-row gap-8">
+  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8">
     <Card
       className="w-80 p-2 hover:-rotate-3 transition-all duration-300 ease-in-out"
     >
@@ -18,13 +18,13 @@ import SectionHeader from "@/components/SectionHeader.astro";
         src="https://framerusercontent.com/images/e2GpdJLva0xBI4P9S1tmLNbF4.webp"
         alt="Mark Lyck memoji"
       />
-      <p class="text-zinc-500 text-center mb-2 font-caveat">
+      <p class="text-zinc-500 text-center text-xl font-caveat">
         Daring to redefine boundaries :)
       </p>
     </Card>
     <div class="w-80 flex flex-col gap-4">
       <h4 class="font-bold text-2xl">Hi, I'm Mark 👋</h4>
-      <p class="text-secondary-foreground leading-7 text-xl font-normal">
+      <p class="text-secondary-foreground text-xl font-extralight">
         A passionate and experienced web developer, smarthome addict, and AI
         enthusiast based in Maryland, USA. With over 11 years of expertise in
         full-stack development, I have dedicated myself to creating exceptional
