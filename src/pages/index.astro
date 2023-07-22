@@ -2,17 +2,19 @@
 import "@/styles/globals.css";
 
 import Layout from "../layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import AboutMe from "@/components/AboutMe.astro";
-import Portfolio from "@/components/Portfolio.astro";
-import Testimonials from "@/components/Testimonials.astro";
+import Header from "@/components/Sections/Header.astro";
+import AboutMe from "@/components/Sections/AboutMe.astro";
+import Portfolio from "@/components/Sections/Portfolio.astro";
+import Testimonials from "@/components/Sections/Testimonials.astro";
+import Tools from "@/components/Sections/Tools.astro";
 ---
 
 <Layout title="Mark Lyck's Portfolio">
-  <main class="@container flex flex-col gap-8">
+  <main class="@container flex flex-col gap-8 max-w-[80rem] mx-auto">
     <Header />
     <AboutMe />
     <Portfolio />
     <Testimonials />
+    <Tools />
   </main>
 </Layout>

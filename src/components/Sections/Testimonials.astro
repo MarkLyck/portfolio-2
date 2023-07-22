@@ -1,0 +1,41 @@
+---
+import { Star, Laptop } from "lucide-react";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import EmailButton from "@/components/EmailButton.astro";
+import Testimonial from "@/components/Testimonial.astro";
+
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+---
+
+<Section>
+  <SectionHeader title="Testimonials" subtitle="Voices of satisfaction">
+    <Star className="text-secondary-foreground" />
+  </SectionHeader>
+  <div class="mb-4">
+    <Testimonial
+      name="Amanda Oliver"
+      avatarSrc="https://github.com/amandaoliver.png"
+      jobTitle="Lead product engineer"
+      company="Sendible"
+      description={`Mark is my lead dev at William Hill on the Betslip team.
+        I can say he's been the best lead I've ever had. 
+        He's a really good developer not only able to produce highly clean and performant code but also good in proposing clean and scalable architecture solutions. 
+        As a lead, he was aware of the needs and qualities of each team member, being able to keep us motivated and doing our best at every moment, even with huge pressure on our backs. 
+        On the soft skills end, he's a really nice and communicative person, easy to reach and to dialog with. To sum up, I'm very lucky to have had the chance of working with him!`}
+      `
+    />
+  </div>
+  <Card className="bg-transparent pt-8 w-full">
+    <CardContent className="flex flex-col items-center justify-center">
+      <Laptop className="mb-8 h-16 w-16" />
+      <h2 class="text-5xl font-bold mb-4 text-center">Wanna work together?</h2>
+      <EmailButton />
+    </CardContent>
+    <CardFooter className="pb-0 p-2 bg-card flex justify-center">
+      <p class="text-xs text-secondary-foreground uppercase">
+        Promise you that I'll reply within 24 hours
+      </p>
+    </CardFooter>
+  </Card>
+</Section>

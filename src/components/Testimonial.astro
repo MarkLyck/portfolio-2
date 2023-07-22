@@ -1,11 +1,20 @@
 ---
 import { Card } from "@/components/ui/card";
 
-const { name, description, avatarSrc } = Astro.props;
+const { name, jobTitle, company, description, avatarSrc } = Astro.props;
 ---
 
-<Card className="p-4">
-  <img src={avatarSrc} alt={name} class="h-16 w-16 rounded-full" />
-  {description}
-  {name}
+<Card className="p-8">
+  <p class="text-lg mb-4">
+    {description}
+  </p>
+  <div class="flex gap-2 items-center">
+    <img src={avatarSrc} alt={name} class="h-12 w-12 rounded-full mr-2" />
+    <div>
+      <p>{name}</p>
+      <p class="text-secondary-foreground font-light">
+        {jobTitle} • {company}
+      </p>
+    </div>
+  </div>
 </Card>

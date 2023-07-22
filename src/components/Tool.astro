@@ -1,0 +1,13 @@
+---
+import { Card } from "@/components/ui/card";
+
+const { imgSrc, name, description } = Astro.props;
+---
+
+<Card className="p-2 ">
+  <img src={imgSrc} alt={name} class="h-20 w-20 rounded" />
+  <!-- <p>{name}</p>
+                <p class="">
+                    {description}
+                </p> -->
+</Card>

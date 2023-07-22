@@ -1,15 +1,15 @@
 ---
-import { Gem } from "lucide-react";
+import { Folder } from "lucide-react";
 import Section from "@/components/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import PortfolioItem from "@/components/PortfolioItem.astro";
 ---
 
 <Section>
-  <SectionHeader title="Portfolio" subtitle="Projects I've worked on">
-    <Gem className="text-secondary-foreground" />
+  <SectionHeader title="Portfolio" subtitle="Latest projects I've worked on">
+    <Folder className="text-secondary-foreground" />
   </SectionHeader>
-  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8 max-w-[60rem]">
+  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8">
     <PortfolioItem
       title="Nebula"
       description="Creator video platform"

@@ -1,0 +1,47 @@
+---
+import { Atom } from "lucide-react";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import Tool from "@/components/Tool.astro";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+---
+
+<Section>
+  <SectionHeader title="Tools" subtitle="Frameworks & Tools">
+    <Atom className="text-secondary-foreground" />
+  </SectionHeader>
+  <Card className="bg-transparent">
+    <CardHeader
+      className="bg-card p-2 text-center text-secondary-foreground text-sm"
+    >
+      Frameworks & Tools I use often
+    </CardHeader>
+    <CardContent className="p-4 flex gap-6">
+      <Tool
+        name="Figma"
+        description="Design tool"
+        imgSrc="https://framerusercontent.com/images/ijj8kMvUyz7muoMreUvjcf29Qrs.png"
+      />
+      <Tool
+        name="Figma"
+        description="Design tool"
+        imgSrc="https://framerusercontent.com/images/ijj8kMvUyz7muoMreUvjcf29Qrs.png"
+      />
+      <Tool
+        name="Figma"
+        description="Design tool"
+        imgSrc="https://framerusercontent.com/images/ijj8kMvUyz7muoMreUvjcf29Qrs.png"
+      />
+      <Tool
+        name="Figma"
+        description="Design tool"
+        imgSrc="https://framerusercontent.com/images/ijj8kMvUyz7muoMreUvjcf29Qrs.png"
+      />
+      <Tool
+        name="Figma"
+        description="Design tool"
+        imgSrc="https://framerusercontent.com/images/ijj8kMvUyz7muoMreUvjcf29Qrs.png"
+      />
+    </CardContent>
+  </Card>
+</Section>
