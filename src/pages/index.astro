@@ -7,6 +7,7 @@ import AboutMe from "@/components/Sections/AboutMe.astro";
 import Portfolio from "@/components/Sections/Portfolio.astro";
 import Testimonials from "@/components/Sections/Testimonials.astro";
 import Tools from "@/components/Sections/Tools.astro";
+import Background from "@/components/Sections/Background.astro";
 ---
 
 <Layout title="Mark Lyck's Portfolio">
@@ -16,5 +17,6 @@ import Tools from "@/components/Sections/Tools.astro";
     <Portfolio />
     <Testimonials />
     <Tools />
+    <Background client:load />
   </main>
 </Layout>

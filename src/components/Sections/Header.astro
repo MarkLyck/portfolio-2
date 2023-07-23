@@ -16,18 +16,22 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
         />
       </CardHeader>
       <CardContent>
-        <h2 class="text-[40px]">Let's build an internet that sparks joy!</h2>
+        <h2 class="text-3xl mb-2 font-bold">
+          Let's build an internet that sparks joy!
+        </h2>
         <span class="text-secondary-foreground"
           >Mark Lyck • Full-stack Web developer</span
         >
       </CardContent>
     </Card>
     <div class="flex flex-1 gap-4 flex-col">
-      <Card className="">
-        <CardHeader className="pb-0">
-          <span class="text-[28px] text-secondary-foreground">Title</span>
+      <Card>
+        <CardHeader className="pb-0 pt-4 px-4">
+          <span class="text-2xl font-light text-secondary-foreground"
+            >Title</span
+          >
         </CardHeader>
-        <CardContent>
+        <CardContent className="pb-4 px-4">
           <h3 class="text-[28px]">Lead Web Developer</h3>
         </CardContent>
       </Card>
@@ -36,7 +40,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
           <a
             href="https://github.com/marklyck"
             target="_blank"
-            class="flex items-center justify-center rounded border-border border w-full py-4 text-xl bg-card hover:bg-white text-white hover:text-black"
+            class="flex items-center justify-center rounded border-border border w-full py-3 text-xl bg-card hover:bg-white text-white hover:text-black"
           >
             <Github className="mr-2" />
             Github
@@ -46,7 +50,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
           <a
             href="https://www.linkedin.com/in/mlyck/"
             target="_blank"
-            class="flex items-center justify-center rounded border-border border w-full py-4 text-xl bg-card hover:bg-white text-white hover:text-black"
+            class="flex items-center justify-center rounded border-border border w-full py-3 text-xl bg-card hover:bg-white text-white hover:text-black"
           >
             <Linkedin className="mr-2" />
             LinkedIn
@@ -54,10 +58,12 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
         </li>
       </ul>
       <Card className="">
-        <CardHeader className="pb-0">
-          <span class="text-[28px] text-secondary-foreground">Based In</span>
+        <CardHeader className="pb-0 px-4 pt-4">
+          <span class="text-2xl font-light text-secondary-foreground"
+            >Based in</span
+          >
         </CardHeader>
-        <CardContent>
+        <CardContent className="pb-4 px-4">
           <h3 class="text-[28px]">Maryland, USA</h3>
         </CardContent>
       </Card>
