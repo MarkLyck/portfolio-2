@@ -1,0 +1,72 @@
+<div
+  id="benchmark"
+  class="mx-auto mt-4 flex flex-col items-center transition-all duration-[5s]"
+>
+  <span class="font-light text-center mb-2"
+    >This website loaded in: <b
+      ><span id="response-end" class="font-extrabold text-red-600"
+        ><div class="inline-block w-5 h-3 rounded bg-zinc-900"></div></span
+      > ms ⚡</b
+    >
+  </span>
+  <p
+    id="ideal-response"
+    class="text-xs text-secondary-foreground text-center mb-2"
+  >
+    <a
+      class="underline hover:text-blue-500"
+      href="https://www.nngroup.com/articles/response-times-3-important-limits/"
+      target="_blank">Jakob Nielsen</a
+    > defined the ideal response-time based on human perceputal abilities. Anything
+    <b class="text-secondary-foreground">under 100ms is perceived as instant</b
+    >.
+  </p>
+  <p id="cold-start" class="text-xs text-secondary-foreground">
+    ❄️ This was loaded from a cold-start. Refresh the page to see how fast it
+    loads when the Edge-worker is hot!
+  </p>
+</div>
+
+<style is:global>
+  @keyframes fade-in {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  #benchmark {
+    opacity: 0;
+  }
+  #cold-start {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const hasLoadedWebsite = sessionStorage.getItem("loaded");
+  if (!hasLoadedWebsite) {
+    const idealResElement = document.getElementById("cold-start")!;
+    idealResElement.style.opacity = "1";
+    sessionStorage.setItem("loaded", "true");
+  }
+</script>
+
+<script>
+  window.addEventListener("load", checkNavigationTiming);
+
+  function checkNavigationTiming() {
+    var navigationTiming: any = performance.getEntriesByType("navigation")[0];
+    if (navigationTiming.loadEventEnd) {
+      const responseTime = navigationTiming.responseEnd;
+      document.getElementById("response-end")!.innerHTML =
+        responseTime.toFixed(0);
+
+      if (responseTime < 500) {
+        const benchmarkEl = document.getElementById("benchmark")!;
+        benchmarkEl.style.opacity = "1";
+      }
+    } else setTimeout(checkNavigationTiming, 0);
+  }
+</script>
