@@ -63,7 +63,7 @@
       document.getElementById("response-end")!.innerHTML =
         responseTime.toFixed(0);
 
-      if (responseTime < 500) {
+      if (responseTime < 1000) {
         const benchmarkEl = document.getElementById("benchmark")!;
         benchmarkEl.style.opacity = "1";
       }
