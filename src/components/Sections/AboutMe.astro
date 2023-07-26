@@ -9,16 +9,16 @@ import SectionHeader from "@/components/SectionHeader.astro";
   <SectionHeader title="About me" subtitle="Who is this guy?">
     <User className="text-secondary-foreground" />
   </SectionHeader>
-  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8 row-auto">
     <Card
-      className="w-80 p-2 hover:-rotate-3 transition-all duration-300 ease-in-out"
+      className="w-80 p-2 hover:-rotate-3 transition-all duration-300 ease-in-out self-start"
     >
       <img
         class="mb-4 rounded"
         src="https://framerusercontent.com/images/e2GpdJLva0xBI4P9S1tmLNbF4.webp"
         alt="Mark Lyck memoji"
       />
-      <p class="text-zinc-500 text-center text-xl font-caveat">
+      <p class="text-zinc-500 text-center text-xl font-caveat pb-2">
         Daring to redefine boundaries :)
       </p>
     </Card>

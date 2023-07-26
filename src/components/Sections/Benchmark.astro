@@ -1,10 +1,10 @@
 <div
   id="benchmark"
-  class="mx-auto mt-4 flex flex-col items-center transition-all duration-[5s]"
+  class="mx-auto mt-4 mb-0 flex flex-col items-center transition-all duration-[5s]"
 >
   <span class="font-light text-center mb-2"
     >This website loaded in: <b
-      ><span id="response-end" class="font-extrabold text-red-600"
+      ><span id="response-end" class="font-extrabold text-emerald-600"
         ><div class="inline-block w-5 h-3 rounded bg-zinc-900"></div></span
       > ms ⚡</b
     >
@@ -63,7 +63,7 @@
       document.getElementById("response-end")!.innerHTML =
         responseTime.toFixed(0);
 
-      if (responseTime < 1000) {
+      if (responseTime < 750) {
         const benchmarkEl = document.getElementById("benchmark")!;
         benchmarkEl.style.opacity = "1";
       }
