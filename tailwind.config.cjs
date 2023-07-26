@@ -100,7 +100,7 @@ module.exports = {
         wave: "wave 5s ease-in-out infinite",
       },
       fontFamily: {
-        inter: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        inter: ["Inter", "InterVariable", ...defaultTheme.fontFamily.sans],
         caveat: ["Caveat", ...defaultTheme.fontFamily.sans],
       },
     },
