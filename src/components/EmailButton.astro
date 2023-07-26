@@ -1,6 +1,10 @@
+---
+import { Mail, MailCheck } from "lucide-react";
+---
+
 <a
   href="mailto:hello@marklyck.com"
-  class="glow-effect rounded-[18px] bg-background text-lg px-12 py-4 text-white"
+  class="glow-effect flex items-center rounded-[18px] text-lg px-12 py-4 text-white"
   style={{
     border: "2px double transparent",
     backgroundImage:
@@ -9,6 +13,8 @@
     backgroundClip: "padding-box, border-box",
   }}
 >
+  <Mail className="mail-closed-icon mr-2 h-5 w-5" />
+  <MailCheck className="mail-open-icon mr-2 h-5 w-5 hidden" />
   hello@marklyck.com
   <svg class="glow-container">
     <rect rx="18px" pathLength="100" stroke-linecap="round" class="glow-blur"
@@ -28,6 +34,18 @@
     --glow-blur-size: 6px;
     --animation-speed: 1200ms;
     position: relative;
+    transition: all 0.2s;
+  }
+
+  .glow-effect:hover {
+    transform: scale(1.02);
+  }
+
+  .glow-effect:hover .mail-closed-icon {
+    display: none;
+  }
+  .glow-effect:hover .mail-open-icon {
+    display: block;
   }
 
   .glow-container {
