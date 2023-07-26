@@ -16,8 +16,9 @@ const { title, description, url, imgSrc } = Astro.props;
     </CardHeader>
     <CardContent className="p-4">
       <img
-        class="group-hover:rotate-1 portfolio-item-image w-full h-auto rounded transition-all duration-300"
+        alt={title}
         src={imgSrc}
+        class="group-hover:rotate-1 portfolio-item-image w-full h-auto rounded transition-all duration-300"
       />
     </CardContent>
   </Card>
