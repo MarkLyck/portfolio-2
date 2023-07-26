@@ -51,10 +51,13 @@ const BackgroundTabs = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="career" className="w-full max-w-[420px]">
+        <p className="text-center text-secondary-foreground mb-2 mt-2">
+          +11 years of software engineering
+        </p>
         <CareerItem
           type="career"
           title="Lead web developer"
-          subtitle="Colony Networks"
+          subtitle="Colony Networks (Remote)"
           dates="2019 - Present"
         />
         <CareerItem
@@ -66,8 +69,14 @@ const BackgroundTabs = () => {
         <CareerItem
           type="career"
           title="Fullstack Engineer"
-          subtitle="Tether"
+          subtitle="Tether (Remote • startup)"
           dates="2016 - 2017"
+        />
+        <CareerItem
+          type="career"
+          title="IBM contract"
+          subtitle="IBM"
+          dates="2016"
         />
         <CareerItem
           type="career"
@@ -83,15 +92,30 @@ const BackgroundTabs = () => {
         />
       </TabsContent>
       <TabsContent value="awards" className="w-full max-w-[420px]">
+        <p className="text-center text-secondary-foreground mb-2 mt-2">
+          Love developer conferences!
+        </p>
         <CareerItem
           type="award"
-          title="Winner Mozilla / React Europe Hackathon"
+          title="Extra-ordinary performance"
+          subtitle="Colony Networks"
+          dates="December 2022"
+        />
+        <CareerItem
+          type="award"
+          title="Extra-ordinary performance"
+          subtitle="Colony Networks"
+          dates="December 2021"
+        />
+        <CareerItem
+          type="award"
+          title="Winner of Mozilla / React Europe Hackathon"
           subtitle="Mozilla"
           dates="May 2018"
         />
         <CareerItem
           type="award"
-          title="Winner William Hill Hackathon"
+          title="Winner of William Hill Hackathon"
           subtitle="William Hill"
           dates="November 2017"
         />
@@ -103,17 +127,26 @@ const BackgroundTabs = () => {
         />
       </TabsContent>
       <TabsContent value="education" className="w-full max-w-[420px]">
+        <p className="text-center text-secondary-foreground mb-2 mt-2">
+          *Mostly self-taught developer since 2007
+        </p>
         <CareerItem
           type="education"
-          title="Front-end Engineering Bootcamp"
-          subtitle="The Iron Yard"
+          title="javaScript Engineering Class"
+          subtitle="The Iron Yard, Austin, TX"
           dates="2016"
         />
         <CareerItem
           type="education"
           title="Business Administration & economics"
-          subtitle="Aarhus University"
+          subtitle="Aarhus University, Denmark"
           dates="2014 - 2017"
+        />
+        <CareerItem
+          type="education"
+          title="HTML and CSS class"
+          subtitle="Esbjerg Efterskole, Denmark"
+          dates="2007"
         />
       </TabsContent>
     </Tabs>

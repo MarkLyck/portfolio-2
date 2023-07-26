@@ -2,6 +2,7 @@
 import "@/styles/globals.css";
 
 import Layout from "../layouts/Layout.astro";
+import Navbar from "@/components/Sections/Navbar.astro";
 import Header from "@/components/Sections/Header.astro";
 import AboutMe from "@/components/Sections/AboutMe.astro";
 import Portfolio from "@/components/Sections/Portfolio.astro";
@@ -12,6 +13,7 @@ import Footer from "@/components/Sections/Footer.astro";
 ---
 
 <Layout title="Mark Lyck's Portfolio">
+  <Navbar />
   <main class="@container flex flex-col gap-4 max-w-[80rem] mx-auto">
     <Header />
     <AboutMe />
