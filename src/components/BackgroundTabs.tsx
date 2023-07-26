@@ -62,7 +62,13 @@ const BackgroundTabs = () => {
         />
         <CareerItem
           type="career"
-          title="Lead web developer"
+          title="Freelance contract"
+          subtitle="Sensefence • Prototype"
+          dates="2020"
+        />
+        <CareerItem
+          type="career"
+          title="Lead Software Engineer"
           subtitle="William Hill"
           dates="2017 - 2019"
         />
@@ -128,11 +134,11 @@ const BackgroundTabs = () => {
       </TabsContent>
       <TabsContent value="education" className="w-full max-w-[420px]">
         <p className="text-center text-secondary-foreground mb-2 mt-2">
-          *Mostly self-taught developer since 2007
+          I'm mostly a self-taught software engineer
         </p>
         <CareerItem
           type="education"
-          title="javaScript Engineering Class"
+          title="JavaScript Engineering Class"
           subtitle="The Iron Yard, Austin, TX"
           dates="2016"
         />
