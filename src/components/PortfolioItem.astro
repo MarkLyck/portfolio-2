@@ -1,6 +1,7 @@
 ---
 import { ArrowRight } from "lucide-react";
-import { Card, CardHeader, CardContent } from "./ui/card";
+import { CardHeader, CardContent } from "./ui/card";
+import Card from "@/components/ShinyCard.astro";
 
 const { title, description, url, imgSrc } = Astro.props;
 ---
@@ -10,9 +11,13 @@ const { title, description, url, imgSrc } = Astro.props;
     <CardHeader className="pb-0 space-y-0 relative">
       <h4 class="text-2xl">{title}</h4>
       <p class="text-secondary-foreground font-light mt-0">{description}</p>
-      <ArrowRight
-        className="absolute top-1/2 right-4 -translate-y-1/2 text-secondary-foreground group-hover:text-white transition-colors duration-200"
-      />
+      <div
+        class="absolute p-2 top-1/2 right-4 -translate-y-1/2 group-hover:bg-zinc-900 rounded transition-colors duration-200"
+      >
+        <ArrowRight
+          className="text-secondary-foreground group-hover:text-white transition-colors duration-200"
+        />
+      </div>
     </CardHeader>
     <CardContent className="p-4">
       <img

@@ -1,0 +1,81 @@
+---
+const { className } = Astro.props;
+---
+
+<div class="card rounded-lg flex flex-col">
+  <div class={`inner-card bg-card rounded-lg h-full w-full ${className}`}>
+    <slot />
+  </div>
+  <div class="blob"></div>
+  <div class="fakeblob"></div>
+</div>
+
+<script>
+  const allCards = document.querySelectorAll(".card");
+
+  window.addEventListener("mousemove", (ev) => {
+    allCards.forEach((e) => {
+      const blob = e.querySelector(".blob");
+      const fblob = e.querySelector(".fakeblob");
+
+      if (!blob || !fblob) return;
+
+      const rec = fblob.getBoundingClientRect();
+
+      blob.animate(
+        [
+          {
+            transform: `translate(${ev.clientX - rec.left - rec.width / 2}px,${
+              ev.clientY - rec.top - rec.height / 2
+            }px)`,
+          },
+        ],
+        {
+          duration: 300,
+          fill: "forwards",
+        }
+      );
+    });
+  });
+</script>
+
+<style>
+  .card {
+    background: rgb(128 128 128 / 0.2);
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover > .inner-card {
+    background: rgb(26, 26, 26, 0.6);
+    backdrop-filter: blur(80px);
+  }
+
+  .inner-card {
+    transition: background 300ms ease-in-out;
+  }
+
+  .blob {
+    filter: blur(40px);
+    position: absolute;
+    z-index: -1; /* to keep it at below everything else */
+    top: 0; /* to align it at top */
+    left: 0; /* to align it at left */
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* to make it circular */
+    background: rgb(255, 255, 255, 0.5);
+  }
+
+  .fakeblob {
+    display: hidden;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+</style>
