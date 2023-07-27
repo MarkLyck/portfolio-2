@@ -14,7 +14,7 @@ const CareerItem = ({
   subtitle: string;
   dates: string;
 }) => (
-  <Card className="p-4 flex w-full mb-4">
+  <Card className="p-4 flex w-full mb-4 hover:bg-border transition-colors duration-200">
     {type === "education" ? (
       <Stars className="mr-4 text-secondary-foreground" />
     ) : type === "award" ? (

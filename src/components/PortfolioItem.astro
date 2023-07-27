@@ -5,7 +5,7 @@ import { Card, CardHeader, CardContent } from "./ui/card";
 const { title, description, url, imgSrc } = Astro.props;
 ---
 
-<a href={url} target="_blank">
+<a href={url} target="_blank" class="w-full max-w-[600px]">
   <Card className="group cursor-pointer">
     <CardHeader className="pb-0 space-y-0 relative">
       <h4 class="text-2xl">{title}</h4>
@@ -18,6 +18,8 @@ const { title, description, url, imgSrc } = Astro.props;
       <img
         alt={title}
         src={imgSrc}
+        width={566}
+        height={416}
         class="group-hover:rotate-1 portfolio-item-image w-full h-auto rounded transition-all duration-300"
       />
     </CardContent>
