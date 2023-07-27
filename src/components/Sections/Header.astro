@@ -1,5 +1,5 @@
 ---
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Stars, Globe2 } from "lucide-react";
 import Section from "@/components/Section.astro";
 import EmailButton from "@/components/EmailButton.astro";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
@@ -58,7 +58,7 @@ import Benchmark from "@/components/Sections/Benchmark.astro";
           </a>
         </li>
       </ul>
-      <Card className="">
+      <Card className="relative">
         <CardHeader className="pb-0 px-4 pt-4">
           <span class="text-2xl font-light text-secondary-foreground"
             >Based in</span
@@ -66,11 +66,15 @@ import Benchmark from "@/components/Sections/Benchmark.astro";
         </CardHeader>
         <CardContent className="pb-4 px-4">
           <h3 class="text-[28px]">Maryland, USA</h3>
+          <Globe2
+            className="text-secondary-foreground h-10 w-10 absolute right-8 top-1/2 -translate-y-1/2"
+          />
         </CardContent>
       </Card>
     </div>
     <Card className="flex-1 flex items-center justify-center flex-col p-8">
-      <h3 class="text-[28px] mb-4">Let's work together!</h3>
+      <Stars className="text-secondary-foreground h-10 w-10 mb-4" />
+      <h3 class="text-[28px] mb-4 text-center">Let's work together!</h3>
       <EmailButton />
     </Card>
   </div>

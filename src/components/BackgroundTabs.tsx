@@ -1,4 +1,4 @@
-import { Stars, Book, Trophy, Briefcase } from "lucide-react";
+import { Stars, Trophy, Briefcase } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -37,15 +37,18 @@ const BackgroundTabs = () => {
       className="flex flex-col justify-center items-center w-full"
     >
       <TabsList className="bg-card h-12 mb-2 rounded-full [&>[aria-selected=true]]:bg-indigo-600 [&>[aria-selected=true]>.tab-icon]:text-white">
-        <TabsTrigger value="career" className="w-[140px] h-10 rounded-full">
+        <TabsTrigger value="career" className="sm:w-[140px] h-10 rounded-full">
           <Briefcase className="tab-icon mr-2 text-secondary-foreground h-4 w-4" />
           Career
         </TabsTrigger>
-        <TabsTrigger value="awards" className="w-[140px] h-10 rounded-full">
+        <TabsTrigger value="awards" className="sm:w-[140px] h-10 rounded-full">
           <Trophy className="tab-icon mr-2 text-secondary-foreground h-4 w-4" />
           Awards
         </TabsTrigger>
-        <TabsTrigger value="education" className="w-[140px] h-10 rounded-full">
+        <TabsTrigger
+          value="education"
+          className="sm:w-[140px] h-10 rounded-full"
+        >
           <Stars className="tab-icon mr-2 text-secondary-foreground h-4 w-4" />
           Education
         </TabsTrigger>

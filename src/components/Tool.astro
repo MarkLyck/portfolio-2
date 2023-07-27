@@ -6,9 +6,9 @@ const { imgSrc, name, description } = Astro.props;
 
 <div class="group relative overflow-hidden hover:overflow-visible">
   <Card
-    className="p-4 relative hover:bg-zinc-800 transition-colors duration-500"
+    className="p-3 sm:p-4 relative hover:bg-zinc-800 transition-colors duration-500"
   >
-    <img src={imgSrc} alt={name} class="h-16 w-16 rounded" />
+    <img src={imgSrc} alt={name} class="h-8 w-8 sm:h-16 sm:w-16 rounded" />
   </Card>
   <Card
     className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-48 overflow-hidden absolute z-10 left-1/2 -translate-x-1/2 -bottom-3 translate-y-full py-2 px-4 bg-zinc-950 w-44 transition-all duration-300 ease-in-out"
