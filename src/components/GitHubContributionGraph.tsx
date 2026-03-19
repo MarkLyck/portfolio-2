@@ -84,7 +84,7 @@ const ErrorState = () => (
   </div>
 );
 
-const SCROLL_SPEED = 3; // px per frame
+const SCROLL_SPEED = 1.5; // px per frame
 const FADE_ZONE = 32; // px – matches h-8
 
 const YearSelectPopup = ({ years }: { years: number[] }) => {
