@@ -192,7 +192,7 @@ const GitHubContributionGraph = () => {
                 >
                   <SelectValue placeholder="Select year" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-none overflow-auto">
                   {years.map((year) => (
                     <SelectItem key={year} value={String(year)}>
                       {year}
