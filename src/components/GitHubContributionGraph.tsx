@@ -187,7 +187,7 @@ const GitHubContributionGraph = () => {
                 </Select.Trigger>
                 <Select.Portal>
                   <Select.Positioner side="bottom" align="start" sideOffset={4}>
-                    <Select.Popup className="z-50 min-w-[8rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+                    <Select.Popup className="z-50 max-h-[10.5rem] min-w-[8rem] overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                       {years.map((year) => (
                         <Select.Item
                           key={year}
