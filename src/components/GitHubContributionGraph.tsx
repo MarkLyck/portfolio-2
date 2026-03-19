@@ -1,6 +1,8 @@
 import { format, parseISO, subDays } from "date-fns";
 import {
   AlertCircle,
+  Check,
+  ChevronDown,
   LoaderCircle,
 } from "lucide-react";
 import { startTransition, useEffect, useMemo, useState } from "react";
@@ -13,6 +15,7 @@ import {
   ContributionGraphLegend,
   type Activity,
 } from "@/components/ui/contribution-graph";
+import { Select } from "@base-ui/react/select";
 import { cn } from "@/lib/utils";
 
 const GITHUB_USERNAME = "marklyck";
@@ -168,25 +171,39 @@ const GitHubContributionGraph = () => {
               {totalCountLabel}
             </p>
             <div className="flex items-center gap-2 self-start sm:self-auto">
-              <label
-                htmlFor="github-contribution-year"
-                className="text-sm text-secondary-foreground"
+              <Select.Root
+                value={activeYear}
+                onValueChange={(value) => setSelectedYear(value as number)}
+                modal={false}
               >
-                Year
-              </label>
-              <select
-                id="github-contribution-year"
-                value={String(activeYear)}
-                onChange={(e) => setSelectedYear(Number(e.target.value))}
-                aria-label="Select contribution year"
-                className="h-10 w-[7.5rem] appearance-none rounded-md border border-border bg-card px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-              >
-                {years.map((year) => (
-                  <option key={year} value={String(year)}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+                <Select.Trigger
+                  aria-label="Select contribution year"
+                  className="flex h-10 w-[7.5rem] items-center justify-between rounded-md border border-border bg-card px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 [&>span]:line-clamp-1"
+                >
+                  <Select.Value placeholder="Select year" />
+                  <Select.Icon className="ml-2 shrink-0 opacity-50">
+                    <ChevronDown className="h-4 w-4" />
+                  </Select.Icon>
+                </Select.Trigger>
+                <Select.Portal>
+                  <Select.Positioner side="bottom" align="start" sideOffset={4}>
+                    <Select.Popup className="z-50 min-w-[8rem] rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+                      {years.map((year) => (
+                        <Select.Item
+                          key={year}
+                          value={year}
+                          className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-8 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+                        >
+                          <Select.ItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                            <Check className="h-4 w-4" />
+                          </Select.ItemIndicator>
+                          <Select.ItemText>{year}</Select.ItemText>
+                        </Select.Item>
+                      ))}
+                    </Select.Popup>
+                  </Select.Positioner>
+                </Select.Portal>
+              </Select.Root>
             </div>
           </div>
           <div className="min-w-0">
