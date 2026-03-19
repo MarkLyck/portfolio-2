@@ -84,8 +84,12 @@ const ErrorState = () => (
   </div>
 );
 
+const SCROLL_SPEED = 60; // px per frame at 60fps
+
 const YearSelectPopup = ({ years }: { years: number[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>(0);
+  const directionRef = useRef<"up" | "down" | null>(null);
   const [showTopFade, setShowTopFade] = useState(false);
   const [showBottomFade, setShowBottomFade] = useState(true);
 
@@ -94,6 +98,28 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
     if (!el) return;
     setShowTopFade(el.scrollTop > 2);
     setShowBottomFade(el.scrollTop + el.clientHeight < el.scrollHeight - 2);
+  }, []);
+
+  const startScrolling = useCallback((direction: "up" | "down") => {
+    directionRef.current = direction;
+    const step = () => {
+      const el = scrollRef.current;
+      if (!el || !directionRef.current) return;
+      el.scrollTop += directionRef.current === "down" ? SCROLL_SPEED / 60 * 16 : -(SCROLL_SPEED / 60 * 16);
+      updateFades();
+      rafRef.current = requestAnimationFrame(step);
+    };
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(step);
+  }, [updateFades]);
+
+  const stopScrolling = useCallback(() => {
+    directionRef.current = null;
+    cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  useEffect(() => {
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
   return (
@@ -119,10 +145,18 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
             ))}
           </div>
           {showTopFade && (
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-popover to-transparent" />
+            <div
+              className="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-popover to-transparent"
+              onMouseEnter={() => startScrolling("up")}
+              onMouseLeave={stopScrolling}
+            />
           )}
           {showBottomFade && (
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-popover to-transparent" />
+            <div
+              className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-popover to-transparent"
+              onMouseEnter={() => startScrolling("down")}
+              onMouseLeave={stopScrolling}
+            />
           )}
         </Select.Popup>
       </Select.Positioner>
