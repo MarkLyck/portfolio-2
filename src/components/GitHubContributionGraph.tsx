@@ -84,7 +84,7 @@ const ErrorState = () => (
   </div>
 );
 
-const SCROLL_SPEED = 1; // px per frame
+const SCROLL_SPEED = 3; // px per frame
 
 const YearSelectPopup = ({ years }: { years: number[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
