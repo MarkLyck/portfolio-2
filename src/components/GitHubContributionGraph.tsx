@@ -5,7 +5,14 @@ import {
   ChevronDown,
   LoaderCircle,
 } from "lucide-react";
-import { startTransition, useEffect, useMemo, useState } from "react";
+import {
+  startTransition,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   ContributionGraph,
@@ -76,6 +83,52 @@ const ErrorState = () => (
     </div>
   </div>
 );
+
+const YearSelectPopup = ({ years }: { years: number[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showTopFade, setShowTopFade] = useState(false);
+  const [showBottomFade, setShowBottomFade] = useState(true);
+
+  const updateFades = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setShowTopFade(el.scrollTop > 2);
+    setShowBottomFade(el.scrollTop + el.clientHeight < el.scrollHeight - 2);
+  }, []);
+
+  return (
+    <Select.Portal>
+      <Select.Positioner side="bottom" align="start" sideOffset={4}>
+        <Select.Popup className="relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md">
+          <div
+            ref={scrollRef}
+            onScroll={updateFades}
+            className="max-h-[10.5rem] overflow-y-auto overscroll-contain p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {years.map((year) => (
+              <Select.Item
+                key={year}
+                value={year}
+                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-8 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+              >
+                <Select.ItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                  <Check className="h-4 w-4" />
+                </Select.ItemIndicator>
+                <Select.ItemText>{year}</Select.ItemText>
+              </Select.Item>
+            ))}
+          </div>
+          {showTopFade && (
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-popover to-transparent" />
+          )}
+          {showBottomFade && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-popover to-transparent" />
+          )}
+        </Select.Popup>
+      </Select.Positioner>
+    </Select.Portal>
+  );
+};
 
 const GitHubContributionGraph = () => {
   const [response, setResponse] = useState<ContributionsResponse | null>(null);
@@ -185,24 +238,7 @@ const GitHubContributionGraph = () => {
                     <ChevronDown className="h-4 w-4" />
                   </Select.Icon>
                 </Select.Trigger>
-                <Select.Portal>
-                  <Select.Positioner side="bottom" align="start" sideOffset={4}>
-                    <Select.Popup className="z-50 max-h-[10.5rem] min-w-[8rem] overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                      {years.map((year) => (
-                        <Select.Item
-                          key={year}
-                          value={year}
-                          className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-8 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
-                        >
-                          <Select.ItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-                            <Check className="h-4 w-4" />
-                          </Select.ItemIndicator>
-                          <Select.ItemText>{year}</Select.ItemText>
-                        </Select.Item>
-                      ))}
-                    </Select.Popup>
-                  </Select.Positioner>
-                </Select.Portal>
+                <YearSelectPopup years={years} />
               </Select.Root>
             </div>
           </div>
