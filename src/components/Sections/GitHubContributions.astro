@@ -1,0 +1,16 @@
+---
+import { Github } from "lucide-react";
+
+import GitHubContributionGraph from "@/components/GitHubContributionGraph";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+---
+
+<Section>
+  <SectionHeader title="GitHub" subtitle="Contribution Graph">
+    <Github className="text-secondary-foreground" />
+  </SectionHeader>
+  <div class="w-full mx-auto">
+    <GitHubContributionGraph client:load />
+  </div>
+</Section>
