@@ -85,8 +85,10 @@ const ErrorState = () => (
 );
 
 const SCROLL_SPEED = 3; // px per frame
+const FADE_ZONE = 32; // px – matches h-8
 
 const YearSelectPopup = ({ years }: { years: number[] }) => {
+  const popupRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const directionRef = useRef<"up" | "down" | null>(null);
@@ -101,7 +103,9 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
   }, []);
 
   const startScrolling = useCallback((direction: "up" | "down") => {
+    if (directionRef.current === direction) return;
     directionRef.current = direction;
+    cancelAnimationFrame(rafRef.current);
     const step = () => {
       const el = scrollRef.current;
       if (!el || !directionRef.current) return;
@@ -109,7 +113,6 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
       updateFades();
       rafRef.current = requestAnimationFrame(step);
     };
-    cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(step);
   }, [updateFades]);
 
@@ -118,6 +121,21 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
     cancelAnimationFrame(rafRef.current);
   }, []);
 
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const popup = popupRef.current;
+    if (!popup) return;
+    const rect = popup.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+
+    if (y < FADE_ZONE && showTopFade) {
+      startScrolling("up");
+    } else if (y > rect.height - FADE_ZONE && showBottomFade) {
+      startScrolling("down");
+    } else {
+      stopScrolling();
+    }
+  }, [showTopFade, showBottomFade, startScrolling, stopScrolling]);
+
   useEffect(() => {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
@@ -125,7 +143,12 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
   return (
     <Select.Portal>
       <Select.Positioner side="bottom" align="start" sideOffset={4}>
-        <Select.Popup className="relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md">
+        <Select.Popup
+          ref={popupRef}
+          className="relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={stopScrolling}
+        >
           <div
             ref={scrollRef}
             onScroll={updateFades}
@@ -145,18 +168,10 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
             ))}
           </div>
           {showTopFade && (
-            <div
-              className="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-popover to-transparent"
-              onMouseEnter={() => startScrolling("up")}
-              onMouseLeave={stopScrolling}
-            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-popover to-transparent" />
           )}
           {showBottomFade && (
-            <div
-              className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-popover to-transparent"
-              onMouseEnter={() => startScrolling("down")}
-              onMouseLeave={stopScrolling}
-            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-popover to-transparent" />
           )}
         </Select.Popup>
       </Select.Positioner>
