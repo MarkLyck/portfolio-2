@@ -84,7 +84,7 @@ const ErrorState = () => (
   </div>
 );
 
-const SCROLL_SPEED = 60; // px per frame at 60fps
+const SCROLL_SPEED = 0.25; // px per frame
 
 const YearSelectPopup = ({ years }: { years: number[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -105,7 +105,7 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
     const step = () => {
       const el = scrollRef.current;
       if (!el || !directionRef.current) return;
-      el.scrollTop += directionRef.current === "down" ? SCROLL_SPEED / 60 * 16 : -(SCROLL_SPEED / 60 * 16);
+      el.scrollTop += directionRef.current === "down" ? SCROLL_SPEED : -SCROLL_SPEED;
       updateFades();
       rafRef.current = requestAnimationFrame(step);
     };
