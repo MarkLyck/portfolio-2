@@ -13,13 +13,6 @@ import {
   ContributionGraphLegend,
   type Activity,
 } from "@/components/ui/contribution-graph";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 const GITHUB_USERNAME = "marklyck";
@@ -181,25 +174,19 @@ const GitHubContributionGraph = () => {
               >
                 Year
               </label>
-              <Select
+              <select
+                id="github-contribution-year"
                 value={String(activeYear)}
-                onValueChange={(value) => setSelectedYear(Number(value))}
+                onChange={(e) => setSelectedYear(Number(e.target.value))}
+                aria-label="Select contribution year"
+                className="h-10 w-[7.5rem] appearance-none rounded-md border border-border bg-card px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
-                <SelectTrigger
-                  id="github-contribution-year"
-                  className="w-[7.5rem] border-border bg-card text-white"
-                  aria-label="Select contribution year"
-                >
-                  <SelectValue placeholder="Select year" />
-                </SelectTrigger>
-                <SelectContent className="max-h-none overflow-auto">
-                  {years.map((year) => (
-                    <SelectItem key={year} value={String(year)}>
-                      {year}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {years.map((year) => (
+                  <option key={year} value={String(year)}>
+                    {year}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="min-w-0">
