@@ -166,11 +166,11 @@ const GitHubContributionGraph = () => {
       {status === "error" ? <ErrorState /> : null}
       {status === "ready" && activeYear && selectedData.length > 0 ? (
         <div className="mx-auto flex w-full flex-col gap-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col-reverse items-center gap-3 sm:flex-row sm:justify-between">
             <p className="text-sm font-medium sm:text-base">
               {totalCountLabel}
             </p>
-            <div className="flex items-center gap-2 self-start sm:self-auto">
+            <div className="flex items-center gap-2">
               <Select.Root
                 value={activeYear}
                 onValueChange={(value) => setSelectedYear(value as number)}
