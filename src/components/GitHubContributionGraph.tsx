@@ -216,7 +216,7 @@ const GitHubContributionGraph = () => {
               fontSize={14}
               className="w-full items-stretch"
             >
-              <ContributionGraphCalendar className="w-full rounded-lg bg-card/20 px-4 py-4">
+              <ContributionGraphCalendar className="w-full rounded-lg bg-card/20 px-2 py-2 sm:px-4 sm:py-4">
                 {({ activity, dayIndex, weekIndex }) => (
                   <ContributionGraphBlock
                     activity={activity}
