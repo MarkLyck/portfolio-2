@@ -142,10 +142,10 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
 
   return (
     <Select.Portal>
-      <Select.Positioner side="bottom" align="start" sideOffset={4}>
+      <Select.Positioner side="bottom" align="start" sideOffset={4} alignItemWithTrigger={false}>
         <Select.Popup
           ref={popupRef}
-          className="relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md"
+          className="relative z-50 w-[7.5rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md"
           onMouseMove={handleMouseMove}
           onMouseLeave={stopScrolling}
         >
@@ -158,7 +158,7 @@ const YearSelectPopup = ({ years }: { years: number[] }) => {
               <Select.Item
                 key={year}
                 value={year}
-                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-8 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
+                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-7 pr-2 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
               >
                 <Select.ItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
                   <Check className="h-4 w-4" />
