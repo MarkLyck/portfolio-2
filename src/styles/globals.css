@@ -1,6 +1,14 @@
 @config "../../tailwind.config.cjs";
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../node_modules/@fontsource/caveat/files/caveat-latin-400-normal.woff2") format("woff2");
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -75,5 +83,148 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+}
+
+@property --x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --r2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+#benchmark {
+  opacity: 0;
+}
+
+#cold-start {
+  opacity: 0;
+}
+
+.card {
+  background: rgb(128 128 128 / 0.2);
+  padding: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover > .inner-card {
+  background: rgb(26, 26, 26, 0.6);
+  backdrop-filter: blur(80px);
+}
+
+.inner-card {
+  transition: background 300ms ease-in-out;
+}
+
+.blob {
+  filter: blur(40px);
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255, 0.5);
+}
+
+.fakeblob {
+  display: hidden;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.rotating-effect {
+  animation: rotating-angle -0.64s linear 3s infinite,
+    rotating-x -0.64s linear 3s infinite;
+  padding: 1px;
+  background: conic-gradient(
+      from calc(var(--r2) - 80deg) at var(--x) 15px,
+      transparent 0,
+      #ffffff 20%,
+      transparent 25%
+    ),
+    #555555;
+  border-radius: 16px;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  transform: translateZ(0);
+}
+
+.rotating-effect:hover {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.25);
+  background: conic-gradient(
+      from calc(var(--r2) - 80deg) at var(--x) 15px,
+      transparent 0,
+      #ffffff 20%,
+      transparent 25%
+    ),
+    #acacac;
+}
+
+.inner-rotating-effect {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  background: #000000;
+  border-radius: 16px;
+}
+
+@keyframes rotating-angle {
+  0% {
+    --r2: 0deg;
+  }
+
+  32.82275711% {
+    --r2: 0deg;
+  }
+
+  50% {
+    --r2: 180deg;
+  }
+
+  82.82275711% {
+    --r2: 180deg;
+  }
+
+  to {
+    --r2: 360deg;
+  }
+}
+
+@keyframes rotating-x {
+  0% {
+    --x: 20px;
+  }
+
+  32.82275711% {
+    --x: 206px;
+  }
+
+  50% {
+    --x: 206px;
+  }
+
+  82.82275711% {
+    --x: 20px;
+  }
+
+  to {
+    --x: 20px;
   }
 }
