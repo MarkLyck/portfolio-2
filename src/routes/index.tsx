@@ -392,6 +392,8 @@ const Portfolio = component$(() => (
       <PortfolioItem title="Nebula" description="Creator video platform" url="https://nebula.tv" imgSrc="/screenshots/nebula.webp" />
       <PortfolioItem title="Formula Stocks" description="Value/Growth investment research platform" url="https://formulastocks.com" imgSrc="/screenshots/formulastocks_alt.webp" />
       <PortfolioItem title="Colony Networks" description="Telenet analytics & management platform" url="https://colonynetworks.com" imgSrc="/screenshots/colony.webp" />
+      <PortfolioItem title="Peterson Academy" description="Online education platform" url="https://petersonacademy.com" imgSrc="/screenshots/petersonacademy.webp" />
+      <PortfolioItem title="Pauch" description="AI bookmark manager" url="https://pauch.app" imgSrc="/screenshots/pauch.webp" />
       <PortfolioItem title="Weekly Stocktip" description="AI Stockpick system" url="https://weeklystocktip.com" imgSrc="/screenshots/weekly_stocktip.webp" />
     </div>
   </Section>
