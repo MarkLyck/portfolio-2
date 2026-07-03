@@ -156,8 +156,6 @@ const ShinyCard = component$<ClassProps>((props) => (
     <div class={cn("inner-card bg-card rounded-lg h-full w-full", props.class)}>
       <Slot />
     </div>
-    <div class="blob"></div>
-    <div class="fakeblob"></div>
   </div>
 ));
 
@@ -362,7 +360,7 @@ const AboutMe = component$(() => (
 
 const PortfolioItem = component$<{ title: string; description: string; url: string; imgSrc: string }>((props) => (
   <a href={props.url} target="_blank" class="w-full max-w-[600px]">
-    <ShinyCard class="group cursor-pointer">
+    <ShinyCard class="group cursor-pointer overflow-hidden">
       <CardHeader class="pb-0 space-y-0 relative">
         <h4 class="text-2xl">{props.title}</h4>
         <p class="text-secondary-foreground font-light mt-0">{props.description}</p>
@@ -621,23 +619,11 @@ const ShinyCardsEffect = component$(() => {
   useVisibleTask$(({ cleanup }) => {
     const handleMouseMove = (ev: MouseEvent) => {
       document.querySelectorAll(".card").forEach((card) => {
-        const blob = card.querySelector(".blob");
-        const fakeBlob = card.querySelector(".fakeblob");
+        if (!(card instanceof HTMLElement)) return;
 
-        if (!(blob instanceof HTMLElement) || !(fakeBlob instanceof HTMLElement)) return;
-
-        const rec = fakeBlob.getBoundingClientRect();
-        blob.animate(
-          [
-            {
-              transform: `translate(${ev.clientX - rec.left - rec.width / 2}px,${ev.clientY - rec.top - rec.height / 2}px)`,
-            },
-          ],
-          {
-            duration: 300,
-            fill: "forwards",
-          },
-        );
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--spotlight-x", `${ev.clientX - rect.left}px`);
+        card.style.setProperty("--spotlight-y", `${ev.clientY - rect.top}px`);
       });
     };
 
