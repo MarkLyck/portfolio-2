@@ -390,7 +390,7 @@ const Portfolio = component$(() => (
     </SectionHeader>
     <div class="grid grid-cols-1 @[45rem]:grid-cols-2 gap-8 w-full">
       <PortfolioItem title="Nebula" description="Creator video platform" url="https://nebula.tv" imgSrc="/screenshots/nebula.webp" />
-      <PortfolioItem title="Formula Stocks" description="Value/Growth investment research platform" url="https://formulastocks.com/alt" imgSrc="/screenshots/formulastocks_alt.webp" />
+      <PortfolioItem title="Formula Stocks" description="Value/Growth investment research platform" url="https://formulastocks.com" imgSrc="/screenshots/formulastocks_alt.webp" />
       <PortfolioItem title="Colony Networks" description="Telenet analytics & management platform" url="https://colonynetworks.com" imgSrc="/screenshots/colony.webp" />
       <PortfolioItem title="Weekly Stocktip" description="AI Stockpick system" url="https://weeklystocktip.com" imgSrc="/screenshots/weekly_stocktip.webp" />
     </div>
