@@ -1,9 +1,11 @@
 # build output
 dist/
 .vercel/
+server/
 
 # generated types
 .astro/
+tsconfig.tsbuildinfo
 
 # dependencies
 node_modules/
