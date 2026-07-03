@@ -107,10 +107,23 @@
 }
 
 .card {
-  background: rgb(128 128 128 / 0.2);
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+  background:
+    radial-gradient(
+      280px circle at var(--spotlight-x) var(--spotlight-y),
+      rgb(255 255 255 / 0.58),
+      rgb(255 255 255 / 0.2) 34%,
+      rgb(128 128 128 / 0.2) 70%
+    );
   padding: 2px;
   position: relative;
   overflow: hidden;
+  transition: box-shadow 300ms ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0 24px 0 rgb(255 255 255 / 0.08);
 }
 
 .card:hover > .inner-card {
@@ -119,30 +132,9 @@
 }
 
 .inner-card {
+  position: relative;
+  z-index: 1;
   transition: background 300ms ease-in-out;
-}
-
-.blob {
-  filter: blur(40px);
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: rgb(255, 255, 255, 0.5);
-}
-
-.fakeblob {
-  display: hidden;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
 }
 
 .rotating-effect {
