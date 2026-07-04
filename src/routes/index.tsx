@@ -1,6 +1,7 @@
 import { $, Slot, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { cn } from "@/lib/utils";
+import { QGitHubContributionGraph } from "@/integrations/react/github-contribution-graph";
 
 type ClassProps = {
   class?: string;
@@ -399,6 +400,17 @@ const Portfolio = component$(() => (
   </Section>
 ));
 
+const GitHubContributions = component$(() => (
+  <Section>
+    <SectionHeader title="GitHub" subtitle="Contribution Graph">
+      <GithubIcon class="size-6 text-secondary-foreground" />
+    </SectionHeader>
+    <div class="w-full">
+      <QGitHubContributionGraph client:load />
+    </div>
+  </Section>
+));
+
 const Testimonial = component$<{
   name: string;
   jobTitle: string;
@@ -645,6 +657,7 @@ export default component$(() => {
         <Header />
         <AboutMe />
         <Portfolio />
+        <GitHubContributions />
         <Testimonials />
         <Tools />
         <Background />

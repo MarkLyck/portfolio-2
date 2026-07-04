@@ -1,5 +1,27 @@
 @config "../../tailwind.config.cjs";
 @import "tailwindcss";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-chart-background: var(--chart-background);
+  --color-chart-foreground: var(--chart-foreground);
+  --color-chart-foreground-muted: var(--chart-foreground-muted);
+  --color-chart-crosshair: var(--chart-crosshair);
+  --color-chart-grid: var(--chart-grid);
+  --color-chart-tooltip-background: var(--chart-tooltip-background);
+  --color-chart-tooltip-foreground: var(--chart-tooltip-foreground);
+  --color-chart-tooltip-muted: var(--chart-tooltip-muted);
+  --color-chart-marker-background: var(--chart-marker-background);
+  --color-chart-marker-border: var(--chart-marker-border);
+  --color-chart-marker-foreground: var(--chart-marker-foreground);
+  --color-chart-label: var(--chart-label);
+  --color-chart-scale-01: var(--chart-scale-01);
+  --color-chart-scale-02: var(--chart-scale-02);
+  --color-chart-scale-03: var(--chart-scale-03);
+  --color-chart-scale-04: var(--chart-scale-04);
+  --color-chart-scale-05: var(--chart-scale-05);
+  --color-chart-scale-pattern-color: var(--chart-scale-pattern-color);
+}
 
 @font-face {
   font-family: "Caveat";
@@ -41,6 +63,25 @@
     --ring: 240 5% 64.9%;
 
     --radius: 0.5rem;
+
+    --chart-background: hsl(var(--background));
+    --chart-foreground: hsl(var(--foreground));
+    --chart-foreground-muted: hsl(var(--muted-foreground));
+    --chart-crosshair: hsl(var(--muted-foreground));
+    --chart-grid: hsl(var(--border));
+    --chart-tooltip-background: rgb(24 24 27 / 0.92);
+    --chart-tooltip-foreground: hsl(var(--foreground));
+    --chart-tooltip-muted: hsl(var(--muted-foreground));
+    --chart-marker-background: hsl(var(--background));
+    --chart-marker-border: hsl(var(--border));
+    --chart-marker-foreground: hsl(var(--foreground));
+    --chart-label: hsl(var(--muted-foreground));
+    --chart-scale-01: #ebedf0;
+    --chart-scale-02: #9be9a8;
+    --chart-scale-03: #40c463;
+    --chart-scale-04: #30a14e;
+    --chart-scale-05: #216e39;
+    --chart-scale-pattern-color: hsl(var(--background));
   }
 
   .dark {
@@ -72,6 +113,25 @@
     --destructive-foreground: 0 85.7% 97.3%;
 
     --ring: 240 3.7% 15.9%;
+
+    --chart-background: hsl(var(--background));
+    --chart-foreground: hsl(var(--foreground));
+    --chart-foreground-muted: hsl(var(--muted-foreground));
+    --chart-crosshair: hsl(var(--muted-foreground));
+    --chart-grid: hsl(var(--border));
+    --chart-tooltip-background: rgb(24 24 27 / 0.92);
+    --chart-tooltip-foreground: hsl(var(--foreground));
+    --chart-tooltip-muted: hsl(var(--muted-foreground));
+    --chart-marker-background: hsl(var(--background));
+    --chart-marker-border: hsl(var(--border));
+    --chart-marker-foreground: hsl(var(--foreground));
+    --chart-label: hsl(var(--muted-foreground));
+    --chart-scale-01: #161b22;
+    --chart-scale-02: #0e4429;
+    --chart-scale-03: #006d32;
+    --chart-scale-04: #26a641;
+    --chart-scale-05: #39d353;
+    --chart-scale-pattern-color: hsl(var(--background));
   }
 }
 

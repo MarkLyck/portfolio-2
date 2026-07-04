@@ -1,4 +1,5 @@
 import { qwikVite } from "@builder.io/qwik/optimizer";
+import { qwikReact } from "@builder.io/qwik-react/vite";
 import { qwikCity } from "@builder.io/qwik-city/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, type UserConfig } from "vite";
@@ -11,6 +12,7 @@ export default defineConfig((): UserConfig => {
       qwikVite({
         entryStrategy: { type: "single" },
       }),
+      qwikReact(),
       tsconfigPaths({ root: "." }),
       tailwindcss(),
     ],
