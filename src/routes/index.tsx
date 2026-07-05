@@ -405,7 +405,7 @@ const GitHubContributions = component$(() => (
     <SectionHeader title="GitHub" subtitle="Contribution Graph">
       <GithubIcon class="size-6 text-secondary-foreground" />
     </SectionHeader>
-    <div class="w-full">
+    <div class="github-contribution-graph-reserve w-full min-h-[calc(max(760px,100%)/6.2+172px)] sm:min-h-[calc(max(760px,100%)/6.2+136px)]">
       <QGitHubContributionGraph client:load />
     </div>
   </Section>

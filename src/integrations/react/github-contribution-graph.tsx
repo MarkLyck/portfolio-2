@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNod
 import {
   HeatmapCells,
   HeatmapChart,
-  HeatmapChartLoading,
   HeatmapInteractionBoundary,
   HeatmapInteractionProvider,
   HeatmapLegend,
@@ -159,20 +158,58 @@ const ContributionChartLegend = ({ hidden = false }: { hidden?: boolean }) => (
   </div>
 );
 
-const ContributionChartLoading = ({ data }: { data: HeatmapColumn[] }) => (
+const ContributionHeatmap = ({
+  chartStatus,
+  data,
+  revealSignature,
+}: {
+  chartStatus: ChartStatus;
+  data: HeatmapColumn[];
+  revealSignature: string;
+}) => (
   <>
     <ContributionChartShell>
-      <HeatmapChartLoading
-        className="[aspect-ratio:6.2/1]"
-        cornerRadius={3}
+      <HeatmapChart
+        animate
+        aspectRatio={CHART_ASPECT_RATIO}
         data={data}
-        gap={3}
-        label="Loading contributions"
+        gap={chartStatus === "loading" ? 3 : 4}
+        levelStyles={levelStyles}
+        loadingLabel="Loading contributions"
         margin={CHART_MARGIN}
-      />
+        revealSignature={revealSignature}
+        status={chartStatus}
+      >
+        <HeatmapCells cornerRadius={3} />
+        <HeatmapXAxis className="font-semibold text-[13px] text-zinc-400" />
+        <HeatmapYAxis className="font-semibold text-[13px] text-zinc-400" />
+        <HeatmapTooltip formatLabel={formatContributionLabel} />
+      </HeatmapChart>
     </ContributionChartShell>
-    <ContributionChartLegend hidden />
+    <ContributionChartLegend hidden={chartStatus === "loading"} />
   </>
+);
+
+const ContributionControls = ({
+  disabled = false,
+  label,
+  onYearChange,
+  value,
+  years,
+}: {
+  disabled?: boolean;
+  label: string;
+  onYearChange: (year: number) => void;
+  value: number;
+  years: number[];
+}) => (
+  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <p className="text-base font-semibold tracking-tight sm:text-lg">{label}</p>
+    <div className="flex items-center gap-3 self-start text-sm text-secondary-foreground sm:self-auto">
+      <span>Year</span>
+      <YearSelect disabled={disabled} onChange={onYearChange} value={value} years={years} />
+    </div>
+  </div>
 );
 
 const CheckIcon = () => (
@@ -343,8 +380,6 @@ function GitHubContributionGraph() {
   const [response, setResponse] = useState<ContributionsResponse | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [status, setStatus] = useState<LoadStatus>("loading");
-  const [chartStatus, setChartStatus] = useState<ChartStatus>("ready");
-  const yearSwitchTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -365,7 +400,6 @@ function GitHubContributionGraph() {
 
         setResponse(data);
         setSelectedYear(years.find((year) => year === currentYear) ?? years[0] ?? null);
-        setChartStatus("ready");
         setStatus("ready");
       } catch (error) {
         if (controller.signal.aborted) {
@@ -381,31 +415,21 @@ function GitHubContributionGraph() {
 
     return () => {
       controller.abort();
-      if (yearSwitchTimerRef.current !== null) {
-        window.clearTimeout(yearSwitchTimerRef.current);
-      }
     };
   }, []);
 
   const handleYearChange = (year: number) => {
-    if (year === selectedYear || chartStatus === "loading") {
+    if (year === selectedYear) {
       return;
     }
 
-    if (yearSwitchTimerRef.current !== null) {
-      window.clearTimeout(yearSwitchTimerRef.current);
-    }
-
     setSelectedYear(year);
-    setChartStatus("loading");
-    yearSwitchTimerRef.current = window.setTimeout(() => {
-      setChartStatus("ready");
-      yearSwitchTimerRef.current = null;
-    }, 650);
   };
 
   const years = useMemo(() => (response ? sortYears(response.total) : []), [response]);
-  const activeYear = selectedYear ?? years[0] ?? null;
+  const currentYear = new Date().getFullYear();
+  const pickerYears = years.length > 0 ? years : [currentYear];
+  const activeYear = selectedYear ?? pickerYears[0];
   const selectedActivities = useMemo(
     () => (response && activeYear ? getActivitiesForYear(response.contributions, activeYear) : []),
     [activeYear, response]
@@ -415,56 +439,32 @@ function GitHubContributionGraph() {
     [activeYear, selectedActivities]
   );
   const selectedTotal = selectedActivities.reduce((total, activity) => total + activity.count, 0);
-  const currentYear = new Date().getFullYear();
-  const loadingHeatmapData = useMemo(() => buildHeatmapColumns([], currentYear), [currentYear]);
   const totalCountLabel =
     activeYear === currentYear
       ? `${selectedTotal.toLocaleString()} contributions in the last year`
       : `${selectedTotal.toLocaleString()} contributions in ${activeYear ?? ""}`;
+  const isChartLoading = status === "loading";
+  const contributionLabel = isChartLoading ? "Loading contributions" : totalCountLabel;
 
   return (
     <div className="mx-auto flex w-full flex-col gap-5">
-      {status === "loading" ? <ContributionChartLoading data={loadingHeatmapData} /> : null}
       {status === "error" ? <ErrorState /> : null}
-      {status === "ready" && activeYear ? (
+      {status !== "error" ? (
         <>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-base font-semibold tracking-tight sm:text-lg">{totalCountLabel}</p>
-            <div className="flex items-center gap-3 self-start text-sm text-secondary-foreground sm:self-auto">
-              <span>Year</span>
-              <YearSelect
-                disabled={chartStatus === "loading"}
-                onChange={handleYearChange}
-                value={activeYear}
-                years={years}
-              />
-            </div>
-          </div>
+          <ContributionControls
+            disabled={status === "loading"}
+            label={contributionLabel}
+            onYearChange={handleYearChange}
+            value={activeYear}
+            years={pickerYears}
+          />
           <HeatmapInteractionProvider>
             <HeatmapInteractionBoundary>
-              {chartStatus === "loading" ? (
-                <ContributionChartLoading data={heatmapData} />
-              ) : (
-                <>
-                  <ContributionChartShell>
-                    <HeatmapChart
-                      animate
-                      aspectRatio={CHART_ASPECT_RATIO}
-                      data={heatmapData}
-                      gap={4}
-                      levelStyles={levelStyles}
-                      margin={CHART_MARGIN}
-                      revealSignature={String(activeYear)}
-                    >
-                      <HeatmapCells cornerRadius={3} />
-                      <HeatmapXAxis className="font-semibold text-[13px] text-zinc-400" />
-                      <HeatmapYAxis className="font-semibold text-[13px] text-zinc-400" />
-                      <HeatmapTooltip formatLabel={formatContributionLabel} />
-                    </HeatmapChart>
-                  </ContributionChartShell>
-                  <ContributionChartLegend />
-                </>
-              )}
+              <ContributionHeatmap
+                chartStatus={isChartLoading ? "loading" : "ready"}
+                data={heatmapData}
+                revealSignature="github-contributions"
+              />
             </HeatmapInteractionBoundary>
           </HeatmapInteractionProvider>
         </>
