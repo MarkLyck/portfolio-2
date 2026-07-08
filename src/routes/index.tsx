@@ -377,7 +377,7 @@ const PortfolioItem = component$<{ title: string; description: string; url: stri
           height="416"
           loading="lazy"
           decoding="async"
-          class="group-hover:rotate-1 portfolio-item-image w-full h-auto rounded transition-all duration-300"
+          class="portfolio-item-image w-full h-auto rounded transition-all duration-300"
         />
       </CardContent>
     </ShinyCard>
